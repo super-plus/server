@@ -1,9 +1,13 @@
 server = {
     'PORT': 9000,
-    'HOST': "0.0.0.0",
+    'HOST': "192.168.10.102",
     'DEBUG': False,
 }
 
 api = {
-    'BASE': server["HOST"] + "/api/"
+    'BASE': "/api/"
+}
+
+requests = {
+    'GET': api["BASE"] + "get/"
 }
