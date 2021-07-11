@@ -40,4 +40,3 @@ def get_processes_by_status(status):
         if proc.info["status"] == status:
             processes.append(proc.info)
     return processes
-
