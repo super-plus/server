@@ -11,3 +11,7 @@ def get_os_distribution_name():
 
 def get_os_distribution_description():
     return __get_distribution().get('DESCRIPTION')
+
+
+def get_os_distribution_version():
+    return __get_distribution().get('RELEASE')
