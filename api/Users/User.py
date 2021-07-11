@@ -2,6 +2,7 @@ import psutil
 from datetime import datetime
 import pwd
 import grp
+import os
 
 
 def get_all_users():
@@ -31,3 +32,22 @@ def get_user_groups(user):
     groups.append(grp.getgrgid(gid).gr_name)
 
     return groups
+
+
+def get_user_history(user):
+    home_dir = "/home/"+str(user) + "/"
+    hists = list()
+    if os.path.exists(home_dir) and os.path.isdir(home_dir):
+        for file in os.listdir(home_dir):
+            if file.endswith("sh_history"):
+                stat = os.stat(home_dir + file)
+                hists.append({
+                    "file": file,
+                    "st_mtime": stat.st_mtime
+                })
+        if len(hists) > 0:
+            recent = max([hist['st_mtime'] for hist in hists])
+            history_file = next(item for item in hists if item["st_mtime"] == recent)["file"]
+            get_file = open(home_dir + history_file, "r+")
+            return get_file.readlines()
+    return False
