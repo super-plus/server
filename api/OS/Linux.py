@@ -1,4 +1,5 @@
 import lsb_release_ex as distrib
+import platform
 
 
 def __get_distribution():
@@ -15,3 +16,7 @@ def get_os_distribution_description():
 
 def get_os_distribution_version():
     return __get_distribution().get('RELEASE')
+
+
+def get_kernel_version():
+    return platform.release()
