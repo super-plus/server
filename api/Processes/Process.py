@@ -20,7 +20,7 @@ def get_processes_by_username(username):
     return processes
 
 
-def get_process_by_name(name):
+def get_processes_by_name(name):
     processes = list()
     for proc in psutil.process_iter(['name', 'pid', 'username', 'status']):
         if proc.info["name"] == name:
@@ -41,5 +41,3 @@ def get_processes_by_status(status):
             processes.append(proc.info)
     return processes
 
-
-print(get_process_by_pid(19))
