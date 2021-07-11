@@ -16,3 +16,8 @@ def get_all_users():
             "pid": user.pid,
         })
     return users_list
+
+
+def get_user_procs(username):
+    from api.Processes import Process
+    return Process.get_processes_by_username(username)
