@@ -1,5 +1,6 @@
 import lsb_release_ex as distrib
 import platform
+import psutil
 
 
 def __get_distribution():
@@ -20,3 +21,7 @@ def get_os_distribution_version():
 
 def get_kernel_version():
     return platform.release()
+
+
+def get_num_users():
+    return len(psutil.users())
