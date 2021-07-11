@@ -1,5 +1,7 @@
 import psutil
 from datetime import datetime
+import pwd
+import grp
 
 
 def get_all_users():
@@ -21,3 +23,11 @@ def get_all_users():
 def get_user_procs(username):
     from api.Processes import Process
     return Process.get_processes_by_username(username)
+
+
+def get_user_groups(user):
+    groups = [g.gr_name for g in grp.getgrall() if user in g.gr_mem]
+    gid = pwd.getpwnam(user).pw_gid
+    groups.append(grp.getgrgid(gid).gr_name)
+
+    return groups
