@@ -1,6 +1,7 @@
 import flask
 from config import server, api
 from routes.OS.Routes import os_routes
+from routes.User.Routes import user_routes
 
 app = flask.Flask(__name__)
 app.config["DEBUG"] = server["DEBUG"]
@@ -12,6 +13,7 @@ def root():
 
 
 app.register_blueprint(os_routes, url_prefix=api["BASE"] + 'os')
+app.register_blueprint(user_routes, url_prefix=api["BASE"] + 'users')
 
 
 app.run(host=server["HOST"], port=server["PORT"])
