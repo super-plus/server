@@ -1,7 +1,7 @@
 import psutil
 
 
-def all():
+def get_all():
     drives = psutil.disk_partitions()
     parsed = list()
     for i in range(len(drives)):
