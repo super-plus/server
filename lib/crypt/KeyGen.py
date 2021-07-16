@@ -37,7 +37,7 @@ class KeyGen:
 
     def validate_algorithm(self, algorithm):
         for i in self.__allowed__():
-            if algorithm == i:
+            if algorithm.upper() == i:
                 return self.__get_algorithm__attribute(i)
             elif algorithm in i:
                 return self.__get_algorithm__attribute(i)
@@ -77,3 +77,5 @@ class KeyGen:
                 'PUBLIC': str(self.key.pubkey),
                 'PRIVATE': str(self.key)
             }
+
+print(KeyGen().algorithm)
