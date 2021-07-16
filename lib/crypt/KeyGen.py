@@ -5,7 +5,7 @@ from config import pgp
 class KeyGen:
     def __init__(self):
         self.exp = pgp["KEY_EXP"]
-        self.key = self.get_key_algorithm(pgp["ALGORITHM"])
+        self.key = self.validate_algorithm(pgp["ALGORITHM"])
 
     @staticmethod
     def __allowed__():
@@ -15,7 +15,7 @@ class KeyGen:
     def __get_algorithm__attribute(key):
         return getattr(PubKeyAlgorithm, key)
 
-    def get_key_algorithm(self, key):
+    def validate_algorithm(self, key):
         for i in self.__allowed__():
             if key == i:
                 return self.__get_algorithm__attribute(i)
