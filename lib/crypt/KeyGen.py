@@ -59,3 +59,9 @@ class KeyGen:
                                 compression=[CompressionAlgorithm.ZLIB, CompressionAlgorithm.BZ2,
                                              CompressionAlgorithm.ZIP, CompressionAlgorithm.Uncompressed],
                                 key_expiration=timedelta(days=self.exp))
+
+    def export_private_key(self, binary=False):
+        return bytes(self.key) if binary else str(self.key)
+
+    def export_public_key(self, binary=False):
+        return bytes(self.key.pubkey) if binary else str(self.key.pubkey)
