@@ -5,7 +5,7 @@ from config import pgp
 class KeyGen:
     def __init__(self):
         self.exp = self.__validate_exp__(pgp["KEY_EXP"])
-        self.key = self.validate_algorithm(pgp["ALGORITHM"])
+        self.algorithm = self.validate_algorithm(pgp["ALGORITHM"])
 
     @staticmethod
     def __allowed__():
