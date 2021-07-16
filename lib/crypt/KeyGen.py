@@ -4,7 +4,7 @@ from config import pgp
 
 class KeyGen:
     def __init__(self):
-        self.exp = pgp["KEY_EXP"]
+        self.exp = self.__validate_exp__(pgp["KEY_EXP"])
         self.key = self.validate_algorithm(pgp["ALGORITHM"])
 
     @staticmethod
@@ -14,6 +14,12 @@ class KeyGen:
     @staticmethod
     def __get_algorithm__attribute(key):
         return getattr(PubKeyAlgorithm, key)
+
+    @staticmethod
+    def __validate_exp__(exp):
+        if isinstance(exp, int) and exp > 0:
+            return exp
+        raise Exception("Expiration date must be a integer greater than zero.")
 
     def validate_algorithm(self, key):
         for i in self.__allowed__():
