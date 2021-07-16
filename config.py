@@ -5,6 +5,10 @@ server = {
 }
 
 api = {
-    'BASE': "/api/",
-    'KEY_EXP': 14
+    'BASE': "/api/"
+}
+
+pgp = {
+    'KEY_EXP': 14,
+    'ALGORITHM': 'RSA'
 }
