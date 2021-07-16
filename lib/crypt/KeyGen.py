@@ -77,3 +77,9 @@ class KeyGen:
                 'PUBLIC': str(self.key.pubkey),
                 'PRIVATE': str(self.key)
             }
+
+    def get_public_key(self):
+        return self.key.pubkey
+
+    def get_private_key(self):
+        return self.key
