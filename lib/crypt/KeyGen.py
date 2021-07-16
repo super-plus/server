@@ -8,6 +8,7 @@ class KeyGen:
         self.exp = self.__validate_exp__(pgp["KEY_EXP"])
         self.algorithm = self.validate_algorithm(pgp["ALGORITHM"])
         self.size = self.__validate_key_size__(pgp["SIZE"])
+        self.key = self.generate_key()
 
     @staticmethod
     def __allowed__():
@@ -36,3 +37,6 @@ class KeyGen:
             elif algorithm in i:
                 return self.__get_algorithm__attribute(i)
         raise Exception("Algorithm is invalid! Valid algorithms: " + str(self.__allowed__()))
+
+    def generate_key(self):
+        return pgpy.PGPKey.new(self.algorithm, self.size)
