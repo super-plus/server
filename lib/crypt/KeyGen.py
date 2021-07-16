@@ -1,6 +1,7 @@
 import pgpy
 from pgpy.constants import PubKeyAlgorithm, KeyFlags, HashAlgorithm, SymmetricKeyAlgorithm, CompressionAlgorithm
 from config import pgp
+from api.OS.Linux import get_os_distribution_description
 
 
 class KeyGen:
@@ -8,7 +9,9 @@ class KeyGen:
         self.exp = self.__validate_exp__(pgp["KEY_EXP"])
         self.algorithm = self.validate_algorithm(pgp["ALGORITHM"])
         self.size = self.__validate_key_size__(pgp["SIZE"])
+        self.name = get_os_distribution_description()
         self.key = self.generate_key()
+        self.uid = self.generate_uid()
 
     @staticmethod
     def __allowed__():
@@ -40,3 +43,6 @@ class KeyGen:
 
     def generate_key(self):
         return pgpy.PGPKey.new(self.algorithm, self.size)
+
+    def generate_uid(self):
+        return pgpy.PGPUID.new(self.name)
