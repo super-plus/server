@@ -77,5 +77,3 @@ class KeyGen:
                 'PUBLIC': str(self.key.pubkey),
                 'PRIVATE': str(self.key)
             }
-
-print(KeyGen().algorithm)
