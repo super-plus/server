@@ -1,3 +1,4 @@
+import pgpy
 from pgpy.constants import PubKeyAlgorithm, KeyFlags, HashAlgorithm, SymmetricKeyAlgorithm, CompressionAlgorithm
 from config import pgp
 
@@ -6,6 +7,7 @@ class KeyGen:
     def __init__(self):
         self.exp = self.__validate_exp__(pgp["KEY_EXP"])
         self.algorithm = self.validate_algorithm(pgp["ALGORITHM"])
+        self.size = self.__validate_key_size__(pgp["SIZE"])
 
     @staticmethod
     def __allowed__():
@@ -14,6 +16,12 @@ class KeyGen:
     @staticmethod
     def __get_algorithm__attribute(algorithm):
         return getattr(PubKeyAlgorithm, algorithm)
+
+    @staticmethod
+    def __validate_key_size__(size):
+        if isinstance(size, int) and size in [2048, 4096]:
+            return size
+        raise Exception("Key size must be either 2048 or 4096")
 
     @staticmethod
     def __validate_exp__(exp):

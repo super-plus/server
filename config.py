@@ -10,5 +10,6 @@ api = {
 
 pgp = {
     'KEY_EXP': 14,
-    'ALGORITHM': 'RSA'
+    'ALGORITHM': 'RSA',
+    'SIZE': 4096
 }
