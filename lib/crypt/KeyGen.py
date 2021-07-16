@@ -65,3 +65,15 @@ class KeyGen:
 
     def export_public_key(self, binary=False):
         return bytes(self.key.pubkey) if binary else str(self.key.pubkey)
+
+    def export_pair(self, binary=False):
+        if binary:
+            return {
+                'PUBLIC': bytes(self.key.pubkey),
+                'PRIVATE': bytes(self.key)
+            }
+        else:
+            return {
+                'PUBLIC': str(self.key.pubkey),
+                'PRIVATE': str(self.key)
+            }
