@@ -11,7 +11,14 @@ class KeyGen:
     def __allowed__():
         return {'RSAEncryptOrSign', 'ECDSA', 'DSA'}
 
+    @staticmethod
+    def __get_algorithm__attribute(key):
+        return getattr(PubKeyAlgorithm, key)
+
     def get_key_algorithm(self, key):
         for i in self.__allowed__():
-            if key in i:
-                return i
+            if key == i:
+                return self.__get_algorithm__attribute(i)
+            elif key in i:
+                return self.__get_algorithm__attribute(i)
+        raise Exception("Algorithm is invalid! Valid algorithms: " + str(self.__allowed__()))
