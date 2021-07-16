@@ -12,8 +12,8 @@ class KeyGen:
         return {'RSAEncryptOrSign', 'ECDSA', 'DSA'}
 
     @staticmethod
-    def __get_algorithm__attribute(key):
-        return getattr(PubKeyAlgorithm, key)
+    def __get_algorithm__attribute(algorithm):
+        return getattr(PubKeyAlgorithm, algorithm)
 
     @staticmethod
     def __validate_exp__(exp):
@@ -21,10 +21,10 @@ class KeyGen:
             return exp
         raise Exception("Expiration date must be a integer greater than zero.")
 
-    def validate_algorithm(self, key):
+    def validate_algorithm(self, algorithm):
         for i in self.__allowed__():
-            if key == i:
+            if algorithm == i:
                 return self.__get_algorithm__attribute(i)
-            elif key in i:
+            elif algorithm in i:
                 return self.__get_algorithm__attribute(i)
         raise Exception("Algorithm is invalid! Valid algorithms: " + str(self.__allowed__()))
