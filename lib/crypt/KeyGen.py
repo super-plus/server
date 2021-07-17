@@ -8,8 +8,8 @@ from datetime import timedelta
 class KeyGen:
     def __init__(self):
         self.exp = self.__validate_exp__(pgp["KEY_EXP"])
-        self.algorithm = self.validate_algorithm(pgp["ALGORITHM"])
         self.size = self.__validate_key_size__(pgp["SIZE"])
+        self.algorithm = self.validate_algorithm(pgp["ALGORITHM"])
         self.name = get_os_distribution_description()
         self.key = self.generate_key()
         self.uid = self.generate_uid()
