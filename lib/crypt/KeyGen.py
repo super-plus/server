@@ -1,5 +1,9 @@
 import pgpy
-from pgpy.constants import PubKeyAlgorithm, KeyFlags, HashAlgorithm, SymmetricKeyAlgorithm, CompressionAlgorithm
+from pgpy.constants import PubKeyAlgorithm,\
+    KeyFlags,\
+    HashAlgorithm,\
+    SymmetricKeyAlgorithm,\
+    CompressionAlgorithm
 from config import pgp
 from api.OS.Linux import get_os_distribution_description
 from datetime import timedelta
@@ -41,7 +45,8 @@ class KeyGen:
                 return self.__get_algorithm__attribute(i)
             elif algorithm in i:
                 return self.__get_algorithm__attribute(i)
-        raise Exception("Algorithm is invalid! Valid algorithms: " + str(self.__allowed__()))
+        raise Exception("Algorithm is invalid! Valid algorithms: "
+                        + str(self.__allowed__()))
 
     def generate_key(self):
         return pgpy.PGPKey.new(self.algorithm, self.size)
@@ -51,13 +56,32 @@ class KeyGen:
 
     def generate_private_key(self):
         return self.key.add_uid(self.uid,
-                                usage={KeyFlags.Sign, KeyFlags.EncryptCommunications, KeyFlags.EncryptStorage},
-                                hashes=[HashAlgorithm.SHA256, HashAlgorithm.SHA384, HashAlgorithm.SHA512,
-                                        HashAlgorithm.SHA224],
-                                ciphers=[SymmetricKeyAlgorithm.AES256, SymmetricKeyAlgorithm.AES192,
-                                         SymmetricKeyAlgorithm.AES128],
-                                compression=[CompressionAlgorithm.ZLIB, CompressionAlgorithm.BZ2,
-                                             CompressionAlgorithm.ZIP, CompressionAlgorithm.Uncompressed],
+                                usage={
+                                       KeyFlags.Sign,
+                                       KeyFlags.EncryptCommunications,
+                                       KeyFlags.EncryptStorage
+                                      },
+
+                                hashes=[
+                                        HashAlgorithm.SHA256,
+                                        HashAlgorithm.SHA384,
+                                        HashAlgorithm.SHA512,
+                                        HashAlgorithm.SHA224
+                                      ],
+
+                                ciphers=[
+                                         SymmetricKeyAlgorithm.AES256,
+                                         SymmetricKeyAlgorithm.AES192,
+                                         SymmetricKeyAlgorithm.AES128
+                                        ],
+
+                                compression=[
+                                             CompressionAlgorithm.ZLIB,
+                                             CompressionAlgorithm.BZ2,
+                                             CompressionAlgorithm.ZIP,
+                                             CompressionAlgorithm.Uncompressed
+                                             ],
+
                                 key_expiration=timedelta(days=self.exp))
 
     def export_private_key(self, binary=False):

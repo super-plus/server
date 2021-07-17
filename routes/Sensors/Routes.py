@@ -22,4 +22,3 @@ def get_fan_rpm(fan):
 @sensors_routes.route('/get/temps/<fahrenheit>')
 def get_temps(fahrenheit):
     return jsonify(Temperatures.get_hw_temps(fahrenheit))
-
