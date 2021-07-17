@@ -56,7 +56,9 @@ class KeyGen:
 
     def generate_private_key(self):
         return self.key.add_uid(self.uid,
-                                usage={KeyFlags.Sign, KeyFlags.EncryptCommunications, KeyFlags.EncryptStorage},
+                                usage={KeyFlags.Sign,
+                                       KeyFlags.EncryptCommunications,
+                                       KeyFlags.EncryptStorage},
                                 hashes=[HashAlgorithm.SHA256, HashAlgorithm.SHA384, HashAlgorithm.SHA512,
                                         HashAlgorithm.SHA224],
                                 ciphers=[SymmetricKeyAlgorithm.AES256, SymmetricKeyAlgorithm.AES192,
