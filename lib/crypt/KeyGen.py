@@ -17,7 +17,7 @@ class KeyGen:
 
     @staticmethod
     def __allowed__():
-        return {'RSAEncryptOrSign', 'ECDSA', 'DSA'}
+        return {'RSAEncryptOrSign', 'ECDH'}
 
     @staticmethod
     def __get_algorithm__attribute(algorithm):
