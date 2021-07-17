@@ -83,3 +83,9 @@ class KeyGen:
 
     def get_private_key(self):
         return self.key
+
+    def get_pair(self):
+        return {
+            'PUBLIC': self.key.pubkey,
+            'PRIVATE': self.key
+        }
