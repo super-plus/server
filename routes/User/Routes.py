@@ -22,4 +22,3 @@ def get_user_groups(username):
 @user_routes.route('/get/user/<username>/history')
 def get_user_history(username):
     return jsonify(User.get_user_history(username))
-
