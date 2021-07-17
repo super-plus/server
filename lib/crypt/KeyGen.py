@@ -66,8 +66,12 @@ class KeyGen:
                                          SymmetricKeyAlgorithm.AES192,
                                          SymmetricKeyAlgorithm.AES128],
 
-                                compression=[CompressionAlgorithm.ZLIB, CompressionAlgorithm.BZ2,
-                                             CompressionAlgorithm.ZIP, CompressionAlgorithm.Uncompressed],
+                                compression=[CompressionAlgorithm.ZLIB,
+                                             CompressionAlgorithm.BZ2,
+                                             CompressionAlgorithm.ZIP,
+                                             CompressionAlgorithm.Uncompressed
+                                             ],
+
                                 key_expiration=timedelta(days=self.exp))
 
     def export_private_key(self, binary=False):
