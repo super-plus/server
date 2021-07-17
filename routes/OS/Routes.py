@@ -22,5 +22,3 @@ def get_distribution_version():
 @os_routes.route('/get/kernel')
 def get_kernel():
     return jsonify(Linux.get_kernel_version())
-
-
