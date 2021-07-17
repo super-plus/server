@@ -1,5 +1,9 @@
 import pgpy
-from pgpy.constants import PubKeyAlgorithm, KeyFlags, HashAlgorithm, SymmetricKeyAlgorithm, CompressionAlgorithm
+from pgpy.constants import PubKeyAlgorithm,\
+    KeyFlags,\
+    HashAlgorithm,\
+    SymmetricKeyAlgorithm,\
+    CompressionAlgorithm
 from config import pgp
 from api.OS.Linux import get_os_distribution_description
 from datetime import timedelta
