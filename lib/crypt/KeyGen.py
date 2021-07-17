@@ -41,7 +41,8 @@ class KeyGen:
                 return self.__get_algorithm__attribute(i)
             elif algorithm in i:
                 return self.__get_algorithm__attribute(i)
-        raise Exception("Algorithm is invalid! Valid algorithms: " + str(self.__allowed__()))
+        raise Exception("Algorithm is invalid! Valid algorithms: "
+                        + str(self.__allowed__()))
 
     def generate_key(self):
         return pgpy.PGPKey.new(self.algorithm, self.size)
