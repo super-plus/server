@@ -113,3 +113,8 @@ class KeyGen:
             'PUBLIC': self.key.pubkey,
             'PRIVATE': self.key
         }
+
+    def generate_certificate(self, name=get_os_distribution_description(), path=pgp["PATH"]):
+        self.name = name
+        path = path / self.name
+        open('{}.asc'.format(path), 'wb').write(bytes(self.export_private_key(binary=True)))
