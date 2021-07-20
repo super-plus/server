@@ -3,14 +3,14 @@ if (( $EUID != 0 )); then
     exit
 fi
 
-if (( $(grep SERVER_SETUP_COMPLETE "/etc/environment" | awk -F= '{print $2}') == 1 )); then
+if (( $(grep SERVER_SETUP_COMPLETE "/etc/environment" | awk -F= '{print $2}') == 0 )); then
     echo "Setup is already completed! Exiting"
     exit
 else
-  echo 'SERVER_SETUP_COMPLETE=1' >> /etc/environment
+  #echo 'SERVER_SETUP_COMPLETE=1' >> /etc/environment
 fi
 
-if [ ! -f ./config.pys ]; then
+if [ ! -f ./config.py ]; then
     echo "Which port do you want to use?"
     read -r port
     until ( ! nc -zv localhost "$port" >/dev/null 2>/dev/null )
@@ -71,4 +71,7 @@ if [ ! -f ./config.pys ]; then
         fi
       fi
     done
+    wget https://gist.githubusercontent.com/rainman0607/3e9739e0d9f71b942e4e154f0e68f799/raw -O $PWD/config.py
+    chmod 755 $PWD/config.py
+    python3 $PWD/lib/setup/ConfigGenerator.py "$port" "$algorithm" "$keysize" "$days"
 fi
