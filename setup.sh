@@ -3,11 +3,11 @@ if (( $EUID != 0 )); then
     exit
 fi
 
-if (( $(grep SERVER_SETUP_COMPLETE "/etc/environment" | awk -F= '{print $2}') == 0 )); then
+if (( $(grep SERVER_SETUP_COMPLETE "/etc/environment" | awk -F= '{print $2}') == 1 )); then
     echo "Setup is already completed! Exiting"
     exit
 else
-  #echo 'SERVER_SETUP_COMPLETE=1' >> /etc/environment
+  echo 'SERVER_SETUP_COMPLETE=1' >> /etc/environment
 fi
 
 if [ ! -f ./config.py ]; then
