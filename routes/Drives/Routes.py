@@ -10,5 +10,5 @@ def get_drives():
 
 
 @drives_routes.route('/get/<drive>')
-def get_num_fans(drive):
+def get_drive(drive):
     return jsonify(Partitions.get_drive(drive))
