@@ -18,7 +18,8 @@ def get():
         "swap": Swap.get_swap_memory(),
         "os": {
             "distribution": Linux.__get_distribution(),
-            "kernel": Linux.get_kernel_version()
+            "kernel": Linux.get_kernel_version(),
+            "hostname": Linux.get_hostname()
         },
         "processes": Process.get_processes(),
         "processor": Processor.get_proc_info()
