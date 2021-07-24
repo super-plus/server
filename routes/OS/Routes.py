@@ -22,3 +22,9 @@ def get_distribution_version():
 @os_routes.route('/get/kernel')
 def get_kernel():
     return jsonify(Linux.get_kernel_version())
+
+
+@os_routes.route('/get/hostname')
+def get_hostname():
+    return jsonify(Linux.get_hostname())
+
